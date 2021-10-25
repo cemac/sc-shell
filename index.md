@@ -17,7 +17,7 @@ you to this powerful tool.
 >
 > 1. Please make sure you have [installed any required software](https://carpentries.github.io/workshop-template/#shell)
 >
-> 2. Please download and extract the [data-shell.zip]({{ page.root }}/data/data-shell.zip) to your Desktop.
+> 2. Please download and extract the [shell-lesson-data.zip]({{ page.root }}/data/shell-lesson-data.zip) to your Desktop.
 >    See the [setup]({{ relative_root_path }}{% link setup.md %}) notes for details.
 >
 > This lesson guides you through the basics of file systems and the
