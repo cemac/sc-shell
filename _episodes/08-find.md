@@ -27,13 +27,13 @@ It is also the name of a very useful command-line program.
 
 `grep` finds and prints lines in files that match a pattern.
 For our examples,
-we will use a file that contains three haikus taken from a
+we will use a file that contains three haiku taken from a
 1998 competition in *Salon* magazine. For this set of examples,
 we're going to be working in the writing subdirectory:
 
 ~~~
 $ cd
-$ cd Desktop/data-shell/writing
+$ cd Desktop/shell-lesson-data/writing
 $ cat haiku.txt
 ~~~
 {: .language-bash}
@@ -55,7 +55,8 @@ Software is like that.
 
 > ## Forever, or Five Years
 >
-> We haven't linked to the original haikus because they don't appear to be on *Salon*'s site any longer.
+> We haven't linked to the original haiku because
+> they don't appear to be on *Salon*'s site any longer.
 > As [Jeff Rothenberg said](https://www.clir.org/wp-content/uploads/sites/6/ensuring.pdf),
 > 'Digital information lasts forever --- or five years, whichever comes first.'
 > Luckily, popular content often [has backups](http://wiki.c2.com/?ComputerErrorHaiku).
@@ -75,11 +76,16 @@ Today it is not working
 ~~~
 {: .output}
 
-Here, `not` is the pattern we're searching for. The grep command searches through the file, looking for matches to the pattern specified. To use it type `grep`, then the pattern we're searching for and finally the name of the file (or files) we're searching in.
+Here, `not` is the pattern we're searching for.
+The grep command searches through the file, looking for matches to the pattern specified.
+To use it type `grep`, then the pattern we're searching for and finally
+the name of the file (or files) we're searching in.
 
 The output is the three lines in the file that contain the letters 'not'.
 
-By default, grep searches for a pattern in a case-sensitive way. In addition, the search pattern we have selected does not have to form a complete word, as we will see in the next example.
+By default, grep searches for a pattern in a case-sensitive way.
+In addition, the search pattern we have selected does not have to form a complete word,
+as we will see in the next example.
 
 Let's search for the pattern: 'The'.
 
@@ -101,7 +107,8 @@ To restrict matches to lines containing the word 'The' on its own,
 we can give `grep` with the `-w` option.
 This will limit matches to word boundaries.
 
-Later in this lesson, we will also see how we can change the search behavior of grep with respect to its case sensitivity.
+Later in this lesson, we will also see how we can change the search behavior of grep
+with respect to its case sensitivity.
 
 ~~~
 $ grep -w The haiku.txt
@@ -152,8 +159,9 @@ $ grep -n "it" haiku.txt
 Here, we can see that lines 5, 9, and 10 contain the letters 'it'.
 
 We can combine options (i.e. flags) as we do with other Unix commands.
-For example, let's find the lines that contain the word 'the'. We can combine
-the option `-w` to find the lines that contain the word 'the' and `-n` to number the lines that match:
+For example, let's find the lines that contain the word 'the'.
+We can combine the option `-w` to find the lines that contain the word 'the'
+and `-n` to number the lines that match:
 
 ~~~
 $ grep -n -w "the" haiku.txt
@@ -205,10 +213,10 @@ $ grep -n -w -v "the" haiku.txt
 If we use the `-r` (recursive) option,
 `grep` can search for a pattern recursively through a set of files in subdirectories.
 
-Let's search recursively for `Yesterday` in the `data-shell/writing` directory:
+Let's search recursively for `Yesterday` in the `shell-lesson-data/writing` directory:
 
 ```
-grep -r Yesterday
+$ grep -r Yesterday .
 ```
 {: .language-bash}
 
@@ -341,14 +349,18 @@ Miscellaneous:
 > Hint: use `man grep` to look for how to grep text recursively in a directory
 > and `man cut` to select more than one field in a line.
 >
-> An example of such a file is provided in `data-shell/data/animal-counts/animals.txt`
+> An example of such a file is provided in `shell-lesson-data/data/animal-counts/animals.txt`
 >
 > > ## Solution
 > >
 > > ```
-> > grep -w $1 -r $2 | cut -d : -f 2 | cut -d , -f 1,3  > $1.txt
+> > grep -w $1 -r $2 | cut -d : -f 2 | cut -d , -f 1,3 > $1.txt
 > > ```
 > > {: .source}
+> >
+> > Actually, you can swap the order of the two cut commands and it still works. At the
+> > command line, try changing the order of the cut commands, and have a look at the output
+> > from each step to see why this is the case.
 > >
 > > You would call the script above like this:
 > >
@@ -366,7 +378,7 @@ Miscellaneous:
 > book, Jo, Meg, Beth, and Amy, your friend thinks that Jo was the
 > most mentioned.  You, however, are certain it was Amy.  Luckily, you
 > have a file `LittleWomen.txt` containing the full text of the novel
-> (`data-shell/writing/data/LittleWomen.txt`).
+> (`shell-lesson-data/writing/data/LittleWomen.txt`).
 > Using a `for` loop, how would you tabulate the number of times each
 > of the four sisters is mentioned?
 >
@@ -404,7 +416,8 @@ Miscellaneous:
 > > Perceptive observers may have noticed that character names sometimes appear in all-uppercase
 > > in chapter titles (e.g. 'MEG GOES TO VANITY FAIR').
 > > If you wanted to count these as well, you could add the `-i` option for case-insensitivity
-> > (though in this case, it doesn't affect the answer to which sister is mentioned most frequently).
+> > (though in this case, it doesn't affect the answer to which sister is mentioned
+> > most frequently).
 > {: .solution}
 {: .challenge}
 
@@ -414,7 +427,12 @@ Again,
 it has a lot of options;
 to show how the simplest ones work, we'll use the directory tree shown below.
 
-![File Tree for Find Example](../fig/find-file-tree.svg)
+![A file tree under the directory "writing" contians several sub-directories and
+files such that "writing" contains directories "data", "thesis", "tools" and a
+file "haiku.txt"; "writing/data" contains the files "Little Women.txt",
+"one.txt" and "two.txt"; "writing/thesis" contains the file "empty-draft.md";
+"writing/tools" contains the directory "old" and the files "format" and "stats";
+and "writing/tools/old" contains a file "oldtool"](../fig/find-file-tree.svg)
 
 Nelle's `writing` directory contains one file called `haiku.txt` and three subdirectories:
 `thesis` (which contains a sadly empty file, `empty-draft.md`);
@@ -423,7 +441,7 @@ and a `tools` directory that contains the programs `format` and `stats`,
 and a subdirectory called `old`, with a file `oldtool`.
 
 For our first command,
-let's run `find .` (remember to run this command from the `data-shell/writing` folder).
+let's run `find .` (remember to run this command from the `shell-lesson-data/writing` folder).
 
 ~~~
 $ find .
@@ -576,8 +594,8 @@ $ wc -l $(find . -name "*.txt")
 When the shell executes this command,
 the first thing it does is run whatever is inside the `$()`.
 It then replaces the `$()` expression with that command's output.
-Since the output of `find` is the four filenames `./data/one.txt`, `./data/LittleWomen.txt`, `./data/two.txt`, and `./haiku.txt`,
-the shell constructs the command:
+Since the output of `find` is the four filenames `./data/one.txt`, `./data/LittleWomen.txt`,
+`./data/two.txt`, and `./haiku.txt`, the shell constructs the command:
 
 ~~~
 $ wc -l ./data/one.txt ./data/LittleWomen.txt ./data/two.txt ./haiku.txt
@@ -611,7 +629,7 @@ $ grep "FE" $(find .. -name "*.pdb")
 > the following commands will find all files in `/data` whose names
 > end in `s.txt` but whose names also do *not* contain the string `net`?
 > (For example, `animals.txt` or `amino-acids.txt` but not `planets.txt`.)
-> Once you have thought about your answer, you can test the commands in the `data-shell`
+> Once you have thought about your answer, you can test the commands in the `shell-lesson-data`
 > directory.
 >
 > 1.  `find data -name "*s.txt" | grep -v net`
@@ -657,11 +675,11 @@ survived so long because it is one of the most productive programming
 environments ever created --- maybe even *the* most productive. Its syntax
 may be cryptic, but people who have mastered it can experiment with
 different commands interactively, then use what they have learned to
-automate their work. Graphical user interfaces may be better at the
-first, but the shell is still unbeaten at the second. And as Alfred
-North Whitehead wrote in 1911, 'Civilization advances by extending the
-number of important operations which we can perform without thinking
-about them.'
+automate their work. Graphical user interfaces may be easier to use at
+first, but once learned, the productivity in the shell is unbeatable.
+And as Alfred North Whitehead wrote in 1911, 'Civilization advances by
+extending the number of important operations which we can perform
+without thinking about them.'
 
 > ## `find` Pipeline Reading Comprehension
 >
@@ -679,3 +697,5 @@ about them.'
 > {: .solution}
 {: .challenge}
 
+
+{% include links.md %}
