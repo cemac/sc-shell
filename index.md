@@ -15,10 +15,10 @@ you to this powerful tool.
 
 > ## Prerequisites
 >
-> 1. Please make sure you have [installed any required software](https://carpentries.github.io/workshop-template/#shell)
+> 1. Please make sure you have [installed any required software]({{ relative_root_path }}{% link setup.md %}#install-software)
 >
 > 2. Please download and extract the [shell-lesson-data.zip]({{ page.root }}/data/shell-lesson-data.zip) to your Desktop.
->    See the [setup]({{ relative_root_path }}{% link setup.md %}) notes for details.
+>    See the [setup]({{ relative_root_path }}{% link setup.md %}#download-files) notes for details.
 >
 > This lesson guides you through the basics of file systems and the
 > shell. If you have stored files on a computer at all and recognize

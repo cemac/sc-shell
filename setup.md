@@ -4,6 +4,24 @@ title: Setup
 root: .
 ---
 
+## Install software
+
+If you have an Apple or Linux operating system, the required software should already be installed on your system.
+
+If you are using a Windows operating system, the [MobaXterm][mobaxterm] software can be used.
+
+If you have administrative access to your computer, you can download and the *Installer edition* and run through the installation process to install the software on your computer.
+
+If you do not have administrative access to your computer, you can download the *Portable edition*, which is a zip file, containing an executable which can be 	extracted and run.
+
+Once MobaXterm has been launched, a *Persistent home directory* should be set. To do this, go to _Settings_ > _Configuration_.
+In the configuration window, under the _General_ tab, the *Persistent home directory* should be set to *_ProfileDir_*.
+This can be done by clicking the folder icon and selecting your Windows user directory, which will usually be *c:\users\username* (replacing *username* with your username on the system).
+
+You may need to restart the MobaXterm software once this has been done, in order for the change to take effect.
+
+![Setting MobaXterm home directory](../fig/moba-home.png)
+
 ## Download files
 You need to download some files to follow this lesson.
 
@@ -11,10 +29,6 @@ You need to download some files to follow this lesson.
 2. Unzip/extract the file.
    **Let your instructor know if you need help with this step**.
    You should end up with a new folder called **`shell-lesson-data`** on your Desktop.
-
-## Install software
-If you do not already have the shell software installed, you will need to
-[download and install][install_shell] it.
 
 ## Open a new shell
 After installing the software
@@ -55,16 +69,20 @@ data-toggle="tab">Linux</a></li>
 <article role="tabpanel" class="tab-pane active" id="windows">
 Computers with Windows operating systems do not automatically have a Unix Shell program
 installed.
-In this lesson, we encourage you to use an emulator included in [Git for Windows][install_shell],
+In this lesson, we encourage you to use an emulator included in [Mobaxterm][mobaxterm],
 which gives you access to both Bash shell commands and Git.
 
-Once installed, you can open a terminal by running the program Git Bash from the Windows start
-menu.
+Once installed, launch the MobaXterm program from the Windows start menu (if using the *Installer edition*)
+or by running the MobaXterm executable extracted from the downloaded zip file (if using the *Portable edition*).
+
+Once opened, select the _Start local terminal_ option from the right hand / main pane.
+
+![Launchch Mobaxterm terminal](../fig/moba-launch.png)
 
 **For advanced users:**
 
 As an alternative to Git for Windows you may wish to [Install the Windows Subsystem for Linux][wsl]
-which gives access to a Bash shell command-line tool in Windows 10.
+which gives access to a Bash shell command-line tool in Windows.
 
 Please note that commands in the Windows Subsystem for Linux (WSL) may differ slightly
 from those shown in the lesson or presented in the workshop.
@@ -101,10 +119,10 @@ you can run it by opening a terminal and typing `bash`.
 </div>
 </div>
 
+[mobaxterm]: https://mobaxterm.mobatek.net/download-home-edition.html
 [zip-file]: {{ page.root }}/data/shell-lesson-data.zip
 [wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [mac-terminal]: http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
 [gnome-terminal]: https://help.gnome.org/users/gnome-terminal/stable/
 [kde-konsole]: https://konsole.kde.org/
 [xterm]: https://en.wikipedia.org/wiki/Xterm
-[install_shell]: https://carpentries.github.io/workshop-template/#shell
