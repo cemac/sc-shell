@@ -6,14 +6,21 @@ root: .
 
 ## Install software
 
-If you have an Apple or Linux operating system, the required software should already be installed on your system.
+If you have an Apple or Linux operating system, the required software should already be installed on
+your system.
 
 If you are using a Windows operating system, the [Git Bash][git_bash] software can be used.
 
-If you have administrative access to your computer, you can download the *Standalone Installer* and run through the installation process to install the software on your computer.
-All of the defaults are fine, but is recommended to change the *Configuring the terminal emulator to use with Git Bash* option to **_Use Windows' default console_**.
+If you have administrative access to your computer, you can download the *Standalone Installer* and
+run through the installation process to install the software on your computer.  All of the defaults
+are fine, but is recommended to change the *Configuring the terminal emulator to use with Git Bash*
+option to **_Use Windows' default console_**.
 
-If you do not have administrative access to your computer, you can download the *Portable edition*. This is an executable, which when run will extract all the files required to run the software, and includes the required executables. For the purposes of this session, it is recommended to extract the files to the Desktop directory, which should result in a new directory named *PortableGit* on the desktop.
+If you do not have administrative access to your computer, you can download the *Portable edition*.
+This is an executable, which when run will extract all the files required to run the software, and
+includes the required executables. For the purposes of this session, it is recommended to extract
+the files to the Desktop directory, which should result in a new directory named *PortableGit* on
+the desktop.
 
 ## Download files
 You need to download some files to follow this lesson.
@@ -65,8 +72,9 @@ installed.
 In this lesson, we encourage you to use an emulator included in [Git Bash][git_bash],
 which gives you access to both Bash shell commands and Git.
 
-Once installed, launch the *Git Bash* program from the Windows start menu (if using the *Standalone Installer*)
-or by running the **_git-bash.exe_** executable in the *PortableGit* directory (if using the *Portable* version).
+Once installed, launch the *Git Bash* program from the Windows start menu (if using the *Standalone
+Installer*) or by running the **_git-bash.exe_** executable in the *PortableGit* directory (if using
+the *Portable* version).
 
 **For advanced users:**
 
