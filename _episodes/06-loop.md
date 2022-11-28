@@ -30,7 +30,8 @@ amount of typing required (and hence reduces the number of typing mistakes).
 
 Suppose we have several hundred genome data files named `basilisk.dat`, `minotaur.dat`, and
 `unicorn.dat`.
-For this example, we'll use the `creatures` directory which only has three example files,
+For this example, we'll use the `exercise-data/creatures` directory which only has three
+example files,
 but the principles can be applied to many many more files at once.
 
 The structure of these files is the same: the common name, classification, and updated date are
@@ -45,7 +46,8 @@ $ head -n 5 basilisk.dat minotaur.dat unicorn.dat
 We would like to print out the classification for each species, which is given on the second
 line of each file.
 For each file, we would need to execute the command `head -n 2` and pipe this to `tail -n 1`.
-We’ll use a loop to solve this problem, but first let’s look at the general form of a loop:
+We’ll use a loop to solve this problem, but first let’s look at the general form of a loop,
+using the pseudo-code below:
 
 ```
 for thing in list_of_things
@@ -157,10 +159,47 @@ Programs are only useful if people can understand them,
 so meaningless names (like `x`) or misleading names (like `temperature`)
 increase the odds that the program won't do what its readers think it does.
 
+In the above examples, the variables (`thing`, `filename`, `x` and `temperature`)
+could have been given any other name, as long as it is meaningful to both the person
+writing the code and the person reading it.
+
+Note also that loops can be used for other things than filenames, like a list of numbers
+or a subset of data.
+
+> ## Write your own loop
+>
+> How would you write a loop that echoes all 10 numbers from 0 to 9?
+>
+> > ## Solution
+> >
+> > ~~~
+> > $ for loop_variable in 0 1 2 3 4 5 6 7 8 9
+> > > do
+> > >     echo $loop_variable
+> > > done
+> > ~~~
+> > {: .language-bash}
+> >
+> > ```
+> > 0
+> > 1
+> > 2
+> > 3
+> > 4
+> > 5
+> > 6
+> > 7
+> > 8
+> > 9
+> > ```
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
 > ## Variables in Loops
 >
-> This exercise refers to the `shell-lesson-data/molecules` directory.
-> `ls` gives the following output:
+> This exercise refers to the `shell-lesson-data/exercise-data/proteins` directory.
+> `ls *.pdb` gives the following output:
 >
 > ~~~
 > cubane.pdb  ethane.pdb  methane.pdb  octane.pdb  pentane.pdb  propane.pdb
@@ -182,7 +221,7 @@ increase the odds that the program won't do what its readers think it does.
 > ~~~
 > $ for datafile in *.pdb
 > > do
-> >	ls $datafile
+> >     ls $datafile
 > > done
 > ~~~
 > {: .language-bash}
@@ -233,7 +272,7 @@ increase the odds that the program won't do what its readers think it does.
 > ## Limiting Sets of Files
 >
 > What would be the output of running the following loop in the
-> `shell-lesson-data/molecules` directory?
+> `shell-lesson-data/exercise-data/proteins` directory?
 >
 > ~~~
 > $ for filename in c*
@@ -277,7 +316,7 @@ increase the odds that the program won't do what its readers think it does.
 
 > ## Saving to a File in a Loop - Part One
 >
-> In the `shell-lesson-data/molecules` directory, what is the effect of this loop?
+> In the `shell-lesson-data/exercise-data/proteins` directory, what is the effect of this loop?
 >
 > ~~~
 > for alkanes in *.pdb
@@ -298,14 +337,15 @@ increase the odds that the program won't do what its readers think it does.
 >
 > > ## Solution
 > > 1. The text from each file in turn gets written to the `alkanes.pdb` file.
-> > However, the file gets overwritten on each loop iteration, so the final content of `alkanes.pdb`
+> > However, the file gets overwritten on each loop iteration, so the final content of
+> > `alkanes.pdb`
 > > is the text from the `propane.pdb` file.
 > {: .solution}
 {: .challenge}
 
 > ## Saving to a File in a Loop - Part Two
 >
-> Also in the `shell-lesson-data/molecules` directory,
+> Also in the `shell-lesson-data/exercise-data/proteins` directory,
 > what would be the output of the following loop?
 >
 > ~~~
@@ -331,7 +371,7 @@ increase the odds that the program won't do what its readers think it does.
 > {: .solution}
 {: .challenge}
 
-Let's continue with our example in the `shell-lesson-data/creatures` directory.
+Let's continue with our example in the `shell-lesson-data/exercise-data/creatures` directory.
 Here's a slightly more complicated loop:
 
 ~~~
@@ -376,7 +416,8 @@ $ for filename in *.dat
 {: .language-bash}
 
 because then the first time through the loop,
-when `$filename` expanded to `basilisk.dat`, the shell would try to run `basilisk.dat` as a program.
+when `$filename` expanded to `basilisk.dat`, the shell would try to run `basilisk.dat` as
+a program.
 Finally,
 the `head` and `tail` combination selects lines 81-100
 from whatever file is being processed
@@ -416,7 +457,7 @@ from whatever file is being processed
 > head: cannot open ‘red dragon.dat’ for reading: No such file or directory
 > head: cannot open ‘purple unicorn.dat’ for reading: No such file or directory
 > ~~~
-> {: .output}
+> {: .error}
 >
 > Try removing the quotes around `$filename` in the loop above to see the effect of the quote
 > marks on spaces. Note that we get a result from the loop command for unicorn.dat
@@ -434,7 +475,8 @@ from whatever file is being processed
 > {: .output}
 {: .callout}
 
-We would like to modify each of the files in `shell-lesson-data/creatures`, but also save a version
+We would like to modify each of the files in `shell-lesson-data/exercise-data/creatures`,
+but also save a version
 of the original files, naming the copies `original-basilisk.dat` and `original-unicorn.dat`.
 We can't use:
 
@@ -530,7 +572,7 @@ these are ones whose names end in 'A' or 'B', rather than 'Z'.
 Starting from her home directory, Nelle types:
 
 ~~~
-$ cd north-pacific-gyre/2012-07-03
+$ cd north-pacific-gyre
 $ for datafile in NENE*A.txt NENE*B.txt
 > do
 >     echo $datafile
@@ -633,7 +675,7 @@ divided by 60,
 tells her that her script will take about two hours to run.
 As a final check,
 she opens another terminal window,
-goes into `north-pacific-gyre/2012-07-03`,
+goes into `north-pacific-gyre`,
 and uses `cat stats-NENE01729B.txt`
 to examine one of the output files.
 It looks good,

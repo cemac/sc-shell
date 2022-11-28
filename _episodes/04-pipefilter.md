@@ -6,10 +6,9 @@ questions:
 - "How can I combine existing commands to do new things?"
 objectives:
 - "Redirect a command's output to a file."
-- "Process a file instead of keyboard input using redirection."
 - "Construct command pipelines with two or more stages."
 - "Explain what usually happens if a program or pipeline isn't given any input to process."
-- "Explain Unix's 'small pieces, loosely joined' philosophy."
+- "Explain the advantage of linking commands with pipes and filters."
 keypoints:
 - "`wc` counts lines, words, and characters in its inputs."
 - "`cat` displays the contents of its inputs."
@@ -25,26 +24,26 @@ keypoints:
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
 the ease with which it lets us combine existing programs in new ways.
-We'll start with the directory called `shell-lesson-data/molecules`
+We'll start with the directory `shell-lesson-data/exercise-data/proteins`
 that contains six files describing some simple organic molecules.
 The `.pdb` extension indicates that these files are in Protein Data Bank format,
 a simple text format that specifies the type and position of each atom in the molecule.
 
 ~~~
-$ ls molecules
+$ ls proteins
 ~~~
 {: .language-bash}
 
 ~~~
-cubane.pdb    ethane.pdb    methane.pdb
-octane.pdb    pentane.pdb   propane.pdb
+cubane.pdb    methane.pdb    pentane.pdb
+ethane.pdb    octane.pdb     propane.pdb
 ~~~
 {: .output}
 
 Let's go into that directory with `cd` and run an example  command `wc cubane.pdb`:
 
 ~~~
-$ cd molecules
+$ cd proteins
 $ wc cubane.pdb
 ~~~
 {: .language-bash}
@@ -117,7 +116,7 @@ only the number of characters or the number of words in the files.
 > sitting there: the command doesn't appear to do anything.
 >
 > If you make this kind of mistake, you can escape out of this state by holding down
-> the control key (<kbd>Ctrl</kbd>) and typing the letter <kbd>C</kbd> once and 
+> the control key (<kbd>Ctrl</kbd>) and typing the letter <kbd>C</kbd> once and
 > letting go of the <kbd>Ctrl</kbd> key.
 > <kbd>Ctrl</kbd>+<kbd>C</kbd>
 {: .callout}
@@ -195,8 +194,7 @@ But first we'll use an exercise to learn a little about the sort command:
 
 > ## What Does `sort -n` Do?
 >
-> The file [`shell-lesson-data/numbers.txt`](../shell-lesson-data/numbers.txt)
-> contains the following lines:
+> The file `shell-lesson-data/exercise-data/numbers.txt` contains the following lines:
 >
 > ~~~
 > 10
@@ -300,7 +298,7 @@ the output of `head` must be the file with the fewest lines.
 
 > ## What Does `>>` Mean?
 >
-> We have seen the use of `>`, but there is a similar operator `>>` 
+> We have seen the use of `>`, but there is a similar operator `>>`
 > which works slightly differently.
 > We'll learn about the differences between these two operators by printing some strings.
 > We can use the `echo` command to print strings e.g.
@@ -336,7 +334,7 @@ the output of `head` must be the file with the fewest lines.
 > >
 > > We see from the second example that the `>>` operator also writes 'hello' to a file
 > > (in this case`testfile02.txt`),
-> > but appends the string to the file if it already exists 
+> > but appends the string to the file if it already exists
 > > (i.e. when we run it for the second time).
 > {: .solution}
 {: .challenge}
@@ -346,27 +344,27 @@ the output of `head` must be the file with the fewest lines.
 > We have already met the `head` command, which prints lines from the start of a file.
 > `tail` is similar, but prints lines from the end of a file instead.
 >
-> Consider the file `shell-lesson-data/data/animals.txt`.
+> Consider the file `shell-lesson-data/exercise-data/animal-counts/animals.csv`.
 > After these commands, select the answer that
-> corresponds to the file `animals-subset.txt`:
+> corresponds to the file `animals-subset.csv`:
 >
 > ~~~
-> $ head -n 3 animals.txt > animals-subset.txt
-> $ tail -n 2 animals.txt >> animals-subset.txt
+> $ head -n 3 animals.csv > animals-subset.csv
+> $ tail -n 2 animals.csv >> animals-subset.csv
 > ~~~
 > {: .language-bash}
 >
-> 1. The first three lines of `animals.txt`
-> 2. The last two lines of `animals.txt`
-> 3. The first three lines and the last two lines of `animals.txt`
-> 4. The second and third lines of `animals.txt`
+> 1. The first three lines of `animals.csv`
+> 2. The last two lines of `animals.csv`
+> 3. The first three lines and the last two lines of `animals.csv`
+> 4. The second and third lines of `animals.csv`
 >
 > > ## Solution
 > > Option 3 is correct.
 > > For option 1 to be correct we would only run the `head` command.
 > > For option 2 to be correct we would only run the `tail` command.
 > > For option 4 to be correct we would have to pipe the output of `head` into `tail -n 2`
-> > by doing `head -n 3 animals.txt | tail -n 2 > animals-subset.txt`
+> >  by doing `head -n 3 animals.csv | tail -n 2 > animals-subset.csv`
 > {: .solution}
 {: .challenge}
 
@@ -462,7 +460,7 @@ the "sort" command is the input to the "head" command and the output of the
 > > The pipe character `|` is used to connect the output from one command to
 > > the input of another.
 > > `>` is used to redirect standard output to a file.
-> > Try it in the `shell-lesson-data/molecules` directory!
+> > Try it in the `shell-lesson-data/exercise-data/proteins` directory!
 > {: .solution}
 {: .challenge}
 
@@ -491,38 +489,40 @@ so that you and other people can put those programs into pipes to multiply their
 
 > ## Pipe Reading Comprehension
 >
-> A file called `animals.txt` (in the `shell-lesson-data/data` folder) contains the following data:
+> A file called `animals.csv` (in the `shell-lesson-data/exercise-data/animal-counts` folder)
+> contains the following data:
 >
 > ~~~
-> 2012-11-05,deer
-> 2012-11-05,rabbit
-> 2012-11-05,raccoon
-> 2012-11-06,rabbit
-> 2012-11-06,deer
-> 2012-11-06,fox
-> 2012-11-07,rabbit
-> 2012-11-07,bear
+> 2012-11-05,deer,5
+> 2012-11-05,rabbit,22
+> 2012-11-05,raccoon,7
+> 2012-11-06,rabbit,19
+> 2012-11-06,deer,2
+> 2012-11-06,fox,4
+> 2012-11-07,rabbit,16
+> 2012-11-07,bear,1
 > ~~~
 > {: .source}
 >
 > What text passes through each of the pipes and the final redirect in the pipeline below?
+> Note, the `sort -r` command sorts in reverse order.
 >
 > ~~~
-> $ cat animals.txt | head -n 5 | tail -n 3 | sort -r > final.txt
+> $ cat animals.csv | head -n 5 | tail -n 3 | sort -r > final.txt
 > ~~~
 > {: .language-bash}
 > Hint: build the pipeline up one command at a time to test your understanding
 > > ## Solution
-> > The `head` command extracts the first 5 lines from `animals.txt`.
+> > The `head` command extracts the first 5 lines from `animals.csv`.
 > > Then, the last 3 lines are extracted from the previous 5 by using the `tail` command.
 > > With the `sort -r` command those 3 lines are sorted in reverse order and finally,
 > > the output is redirected to a file `final.txt`.
 > > The content of this file can be checked by executing `cat final.txt`.
 > > The file should contain the following lines:
 > > ```
-> > 2012-11-06,rabbit
-> > 2012-11-06,deer
-> > 2012-11-05,raccoon
+> > 2012-11-06,rabbit,19
+> > 2012-11-06,deer,2
+> > 2012-11-05,raccoon,7
 > > ```
 > > {: .source}
 > {: .solution}
@@ -530,10 +530,10 @@ so that you and other people can put those programs into pipes to multiply their
 
 > ## Pipe Construction
 >
-> For the file `animals.txt` from the previous exercise, consider the following command:
+> For the file `animals.csv` from the previous exercise, consider the following command:
 >
 > ~~~
-> $ cut -d , -f 2 animals.txt
+> $ cut -d , -f 2 animals.csv
 > ~~~
 > {: .language-bash}
 >
@@ -563,7 +563,7 @@ so that you and other people can put those programs into pipes to multiply their
 >
 > > ## Solution
 > > ```
-> > $ cut -d , -f 2 animals.txt | sort | uniq
+> > $ cut -d , -f 2 animals.csv | sort | uniq
 > > ```
 > > {: .language-bash}
 > {: .solution}
@@ -571,43 +571,45 @@ so that you and other people can put those programs into pipes to multiply their
 
 > ## Which Pipe?
 >
-> The file `animals.txt` contains 8 lines of data formatted as follows:
+> The file `animals.csv` contains 8 lines of data formatted as follows:
 >
 > ~~~
-> 2012-11-05,deer
-> 2012-11-05,rabbit
-> 2012-11-05,raccoon
-> 2012-11-06,rabbit
+> 2012-11-05,deer,5
+> 2012-11-05,rabbit,22
+> 2012-11-05,raccoon,7
+> 2012-11-06,rabbit,19
 > ...
 > ~~~
 > {: .output}
 >
 > The `uniq` command has a `-c` option which gives a count of the
 > number of times a line occurs in its input.  Assuming your current
-> directory is `shell-lesson-data/data/`, what command would you use to produce
-> a table that shows the total count of each type of animal in the file?
+> directory is `shell-lesson-data/exercise-data/animal-counts`, 
+> what command would you use to produce a table that shows
+> the total count of each type of animal in the file?
 >
-> 1.  `sort animals.txt | uniq -c`
-> 2.  `sort -t, -k2,2 animals.txt | uniq -c`
-> 3.  `cut -d, -f 2 animals.txt | uniq -c`
-> 4.  `cut -d, -f 2 animals.txt | sort | uniq -c`
-> 5.  `cut -d, -f 2 animals.txt | sort | uniq -c | wc -l`
+> 1.  `sort animals.csv | uniq -c`
+> 2.  `sort -t, -k2,2 animals.csv | uniq -c`
+> 3.  `cut -d, -f 2 animals.csv | uniq -c`
+> 4.  `cut -d, -f 2 animals.csv | sort | uniq -c`
+> 5.  `cut -d, -f 2 animals.csv | sort | uniq -c | wc -l`
 >
 > > ## Solution
 > > Option 4. is the correct answer.
 > > If you have difficulty understanding why, try running the commands, or sub-sections of
-> > the pipelines (make sure you are in the `shell-lesson-data/data` directory).
+> > the pipelines (make sure you are in the `shell-lesson-data/exercise-data/animal-counts` 
+> > directory).
 > {: .solution}
 {: .challenge}
 
 ## Nelle's Pipeline: Checking Files
 
 Nelle has run her samples through the assay machines
-and created 17 files in the `north-pacific-gyre/2012-07-03` directory described earlier.
-As a quick check, starting from her home directory, Nelle types:
+and created 17 files in the `north-pacific-gyre` directory described earlier.
+As a quick check, starting from the `shell-lesson-data` directory, Nelle types:
 
 ~~~
-$ cd north-pacific-gyre/2012-07-03
+$ cd north-pacific-gyre
 $ wc -l *.txt
 ~~~
 {: .language-bash}
@@ -705,7 +707,7 @@ so instead, she'll have to be careful later on to select files using the wildcar
 >
 > > ## Solution
 > > 1. This would remove `.txt` files with one-character names
-> > 2. This is correct answer
+> > 2. This is the correct answer
 > > 3. The shell would expand `*` to match everything in the current directory,
 > > so the command would try to remove all matched files and an additional
 > > file called `.txt`

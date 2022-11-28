@@ -33,11 +33,11 @@ If you come back to your work later (or if someone else finds your work and want
 you will be able to reproduce the same results simply by running your script,
 rather than having to remember or retype a long list of commands.
 
-Let's start by going back to `molecules/` and creating a new file, `middle.sh` which will
+Let's start by going back to `proteins/` and creating a new file, `middle.sh` which will
 become our shell script:
 
 ~~~
-$ cd molecules
+$ cd proteins
 $ nano middle.sh
 ~~~
 {: .language-bash}
@@ -50,7 +50,7 @@ We can use the text editor to directly edit the file -- we'll simply insert the 
 ~~~
 head -n 15 octane.pdb | tail -n 5
 ~~~
-{: .language-bash}
+{: .source}
 
 This is a variation on the pipe we constructed earlier:
 it selects lines 11-15 of the file `octane.pdb`.
@@ -59,7 +59,7 @@ we are putting the commands in a file.
 
 Then we save the file (`Ctrl-O` in nano),
  and exit the text editor (`Ctrl-X` in nano).
-Check that the directory `molecules` now contains a file called `middle.sh`.
+Check that the directory `proteins` now contains a file called `middle.sh`.
 
 Once we have saved the file,
 we can ask the shell to execute the commands it contains.
@@ -111,7 +111,7 @@ Now, within "nano", replace the text `octane.pdb` with the special variable call
 ~~~
 head -n 15 "$1" | tail -n 5
 ~~~
-{: .output}
+{: .source}
 
 Inside a shell script,
 `$1` means 'the first filename (or other argument) on the command line'.
@@ -172,7 +172,7 @@ $ nano middle.sh
 ~~~
 head -n "$2" "$1" | tail -n "$3"
 ~~~
-{: .output}
+{: .source}
 
 We can now run:
 
@@ -221,7 +221,7 @@ $ nano middle.sh
 # Usage: bash middle.sh filename end_line num_lines
 head -n "$2" "$1" | tail -n "$3"
 ~~~
-{: .output}
+{: .source}
 
 A comment starts with a `#` character and runs to the end of the line.
 The computer ignores comments,
@@ -266,7 +266,7 @@ $ nano sorted.sh
 # Usage: bash sorted.sh one_or_more_filenames
 wc -l "$@" | sort -n
 ~~~
-{: .output}
+{: .source}
 
 ~~~
 $ bash sorted.sh *.pdb ../creatures/*.dat
@@ -303,10 +303,11 @@ $ bash sorted.sh *.pdb ../creatures/*.dat
 > ~~~
 > {: .source}
 >
-> An example of this type of file is given in `shell-lesson-data/data/animal-counts/animals.txt`.
+> An example of this type of file is given in
+> `shell-lesson-data/exercise-data/animal-counts/animals.csv`.
 >
-> We can use the command `cut -d , -f 2 animals.txt | sort | uniq` to produce
-> the unique species in `animals.txt`.
+> We can use the command `cut -d , -f 2 animals.csv | sort | uniq` to produce
+> the unique species in `animals.csv`.
 > In order to avoid having to type out this series of commands every time,
 > a scientist may choose to write a shell script instead.
 >
@@ -323,9 +324,9 @@ $ bash sorted.sh *.pdb ../creatures/*.dat
 > > # Loop over all files
 > > for file in $@
 > > do
-> > 	echo "Unique species in $file:"
-> > 	# Extract species names
-> > 	cut -d , -f 2 $file | sort | uniq
+> >     echo "Unique species in $file:"
+> >     # Extract species names
+> >     cut -d , -f 2 $file | sort | uniq
 > > done
 > > ```
 > > {: .language-bash}
@@ -397,13 +398,20 @@ and save it as a shell script.
 Nelle's supervisor insisted that all her analytics must be reproducible.
 The easiest way to capture all the steps is in a script.
 
-First we return to Nelle's data directory:
+First we return to Nelle's project directory:
 ```
-$ cd ../north-pacific-gyre/2012-07-03/
+$ cd ../../north-pacific-gyre/
 ```
 {: .language-bash}
 
-She runs the editor and writes the following:
+She creates a file using `nano` ...
+
+~~~
+$ nano do-stats.sh
+~~~
+{: .language-bash}
+
+...which contains the following:
 
 ~~~
 # Calculate stats for data files.
@@ -460,7 +468,7 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 
 > ## Variables in Shell Scripts
 >
-> In the `molecules` directory, imagine you have a shell script called `script.sh` containing the
+> In the `proteins` directory, imagine you have a shell script called `script.sh` containing the
 > following commands:
 >
 > ~~~
@@ -469,19 +477,19 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 > ~~~
 > {: .language-bash}
 >
-> While you are in the `molecules` directory, you type the following command:
+> While you are in the `proteins` directory, you type the following command:
 >
 > ~~~
-> bash script.sh '*.pdb' 1 1
+> $ bash script.sh '*.pdb' 1 1
 > ~~~
 > {: .language-bash}
 >
 > Which of the following outputs would you expect to see?
 >
 > 1. All of the lines between the first and the last lines of each file ending in `.pdb`
->    in the `molecules` directory
-> 2. The first and the last line of each file ending in `.pdb` in the `molecules` directory
-> 3. The first and the last line of each file in the `molecules` directory
+>    in the `proteins` directory
+> 2. The first and the last line of each file ending in `.pdb` in the `proteins` directory
+> 3. The first and the last line of each file in the `proteins` directory
 > 4. An error because of the quotes around `*.pdb`
 >
 > > ## Solution
@@ -550,7 +558,7 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 
 > ## Script Reading Comprehension
 >
-> For this question, consider the `shell-lesson-data/molecules` directory once again.
+> For this question, consider the `shell-lesson-data/exercise-data/proteins` directory once again.
 > This contains a number of `.pdb` files in addition to any other files you
 > may have created.
 > Explain what each of the following three scripts would do when run as
@@ -600,7 +608,7 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 > ## Debugging Scripts
 >
 > Suppose you have saved the following script in a file called `do-errors.sh`
-> in Nelle's `north-pacific-gyre/2012-07-03` directory:
+> in Nelle's `north-pacific-gyre/scripts` directory:
 >
 > ~~~
 > # Calculate stats for data files.
@@ -612,7 +620,7 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 > ~~~
 > {: .language-bash}
 >
-> When you run it:
+> When you run it from the `north-pacific-gyre` directory:
 >
 > ~~~
 > $ bash do-errors.sh NENE*A.txt NENE*B.txt
@@ -623,7 +631,7 @@ Of course, this introduces another tradeoff between flexibility and complexity.
 > To figure out why, re-run the script using the `-x` option:
 >
 > ~~~
-> bash -x do-errors.sh NENE*A.txt NENE*B.txt
+> $ bash -x do-errors.sh NENE*A.txt NENE*B.txt
 > ~~~
 > {: .language-bash}
 >

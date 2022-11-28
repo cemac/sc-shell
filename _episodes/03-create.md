@@ -25,9 +25,12 @@ keypoints:
 We now know how to explore files and directories,
 but how do we create them in the first place?
 
+In this episode we will learn about creating and moving files and directories,
+using the `exercise-data/writing` directory as an example.
+
 ### Step one: see where we are and what we already have
-Let's go back to our `shell-lesson-data` directory on the Desktop
-and use `ls -F` to see what it contains:
+We should still be in the `shell-lesson-data` directory on the Desktop,
+which we can check using:
 
 ~~~
 $ pwd
@@ -39,13 +42,19 @@ $ pwd
 ~~~
 {: .output}
 
+Next we'll move to the `exercise-data/writing` directory and see what it contains:
+~~~
+$ cd exercise-data/writing/
+~~~
+{:  .language-bash}
+
 ~~~
 $ ls -F
 ~~~
 {: .language-bash}
 
 ~~~
-creatures/  data/  molecules/  north-pacific-gyre/  notes.txt  pizza.cfg  solar.pdf  writing/
+haiku.txt  LittleWomen.txt
 ~~~
 {: .output}
 
@@ -71,8 +80,7 @@ $ ls -F
 {: .language-bash}
 
 ~~~
-creatures/  data/  molecules/  north-pacific-gyre/  notes.txt  pizza.cfg
-solar.pdf  thesis/  writing/
+haiku.txt  LittleWomen.txt  thesis/
 ~~~
 {: .output}
 
@@ -88,7 +96,7 @@ The `-p` option allows `mkdir` to create a directory with nested subdirectories
 in a single operation:
 
 ~~~
-$ mkdir -p project/data project/results
+$ mkdir -p ../project/data ../project/results
 ~~~
 {: .language-bash}
 
@@ -97,17 +105,17 @@ Let's use `ls -FR` to recursively list the new directory hierarchy we just creat
 `project` directory:
 
 ~~~
-$ ls -FR project
+$ ls -FR ../project
 ~~~
 {: .language-bash}
 
 ~~~
-project/:
+../project/:
 data/  results/
 
-project/data:
+../project/data:
 
-project/results:
+../project/results:
 ~~~
 {: .output}
 
@@ -264,6 +272,16 @@ draft.txt
 > >     efficiently generate a blank text file to be used by such
 > >     programs.
 > {: .solution}
+>
+> To avoid confusion later on,
+> we suggest removing the file you've just created before proceding with the rest
+> of the episode, otherwise future outputs may vary from those given in the lesson.
+> To do this, use the following command:
+>
+> ~~~
+> $ rm my_file.txt
+> ~~~
+> {: .language-bash}
 {: .challenge}
 
 > ## What's In A Name?
@@ -291,10 +309,10 @@ draft.txt
 {: .callout}
 
 ## Moving files and directories
-Returning to the `shell-lesson-data` directory,
+Returning to the `shell-lesson-data/exercise-data/writing` directory,
 
 ```
-cd ~/Desktop/shell-lesson-data/
+$ cd ~/Desktop/shell-lesson-data/exercise-data/writing
 ```
 {: .language-bash}
 
@@ -340,7 +358,7 @@ to tell `mv` that we want to keep the filename
 but put the file somewhere new.
 (This is why the command is called 'move'.)
 In this case,
-the directory name we use is the special directory name`.` that we mentioned earlier.
+the directory name we use is the special directory name `.` that we mentioned earlier.
 
 ~~~
 $ mv thesis/quotes.txt .
@@ -371,7 +389,7 @@ $ ls thesis/quotes.txt
 ```
 ls: cannot access 'thesis/quotes.txt': No such file or directory
 ```
-{: .output}
+{: .error}
 
 `ls` with a filename or directory as an argument only lists the requested file or directory.
 If the file given as the argument doesn't exist, the shell returns an error as we saw above.
@@ -543,7 +561,7 @@ quotations.txt
 
 ## Removing files and directories
 
-Returning to the `shell-lesson-data` directory,
+Returning to the `shell-lesson-data/exercise-data/writing` directory,
 let's tidy up this directory by removing the `quotes.txt` file we created.
 The Unix command we'll use for this is `rm` (short for 'remove'):
 
@@ -562,7 +580,7 @@ $ ls quotes.txt
 ```
 ls: cannot access 'quotes.txt': No such file or directory
 ```
-{: .output}
+{: .error}
 
 > ## Deleting Is Forever
 >
@@ -583,9 +601,9 @@ ls: cannot access 'quotes.txt': No such file or directory
 >
 > > ## Solution
 > > ```
-> > $ rm: remove regular file 'thesis_backup/quotations.txt'? y
+> > rm: remove regular file 'thesis_backup/quotations.txt'? y
 > > ```
-> > {: .language-bash}
+> > {: .output}
 > > The `-i` option will prompt before (every) removal (use <kbd>Y</kbd> to confirm deletion
 > > or <kbd>N</kbd> to keep the file).
 > > The Unix shell doesn't have a trash bin, so all the files removed will disappear forever.
@@ -630,29 +648,29 @@ or specifying a naming pattern using wildcards.
 
 > ## Copy with Multiple Filenames
 >
-> For this exercise, you can test the commands in the `shell-lesson-data/data` directory.
+> For this exercise, you can test the commands in the `shell-lesson-data/exercise-data` directory.
 >
 > In the example below, what does `cp` do when given several filenames and a directory name?
 >
 > ~~~
 > $ mkdir backup
-> $ cp amino-acids.txt animals.txt backup/
+> $ cp creatures/minotaur.dat creatures/unicorn.dat backup/
 > ~~~
 > {: .language-bash}
 >
 > In the example below, what does `cp` do when given three or more file names?
 >
 > ~~~
+> $ cd creatures
 > $ ls -F
 > ~~~
 > {: .language-bash}
 > ~~~
-> amino-acids.txt  animals.txt  backup/  elements/  morse.txt  pdb/
-> planets.txt  salmon.txt  sunspot.txt
+> basilisk.dat  minotaur.dat  unicorn.dat
 > ~~~
 > {: .output}
 > ~~~
-> $ cp amino-acids.txt animals.txt morse.txt
+> $ cp minotaur.dat unicorn.dat basilisk.dat
 > ~~~
 > {: .language-bash}
 >
@@ -665,9 +683,9 @@ or specifying a naming pattern using wildcards.
 > > because it is expecting a directory name as the last argument.
 > >
 > > ```
-> > cp: target ‘morse.txt’ is not a directory
+> > cp: target 'basilisk.dat' is not a directory
 > > ```
-> > {: .output}
+> > {: .error}
 > {: .solution}
 {: .challenge}
 
@@ -676,7 +694,7 @@ or specifying a naming pattern using wildcards.
 > ## Wildcards
 >
 > `*` is a **wildcard**, which matches zero or more  characters.
-> Let's consider the `shell-lesson-data/molecules` directory:
+> Let's consider the `shell-lesson-data/exercise-data/proteins` directory:
 > `*.pdb` matches `ethane.pdb`, `propane.pdb`, and every
 > file that ends with '.pdb'. On the other hand, `p*.pdb` only matches
 > `pentane.pdb` and `propane.pdb`, because the 'p' at the front only
@@ -694,7 +712,7 @@ or specifying a naming pattern using wildcards.
 > list of matching filenames *before* running the command that was
 > asked for. As an exception, if a wildcard expression does not match
 > any file, Bash will pass the expression as an argument to the command
-> as it is. For example, typing `ls *.pdf` in the `molecules` directory
+> as it is. For example, typing `ls *.pdf` in the `proteins` directory
 > (which contains only files with names ending with `.pdb`) results in
 > an error message that there is no file called `*.pdf`.
 > However, generally commands like `wc` and `ls` see the lists of
@@ -705,7 +723,7 @@ or specifying a naming pattern using wildcards.
 
 > ## List filenames matching a pattern
 >
-> When run in the `molecules` directory, which `ls` command(s) will
+> When run in the `proteins` directory, which `ls` command(s) will
 > produce this output?
 >
 > `ethane.pdb   methane.pdb`
@@ -885,10 +903,10 @@ or specifying a naming pattern using wildcards.
 > You're starting a new experiment and would like to duplicate the directory
 > structure from your previous experiment so you can add new data.
 >
-> Assume that the previous experiment is in a folder called '2016-05-18',
+> Assume that the previous experiment is in a folder called `2016-05-18`,
 > which contains a `data` folder that in turn contains folders named `raw` and
 > `processed` that contain data files.  The goal is to copy the folder structure
-> of the `2016-05-18-data` folder into a folder called `2016-05-20`
+> of the `2016-05-18` folder into a folder called `2016-05-20`
 > so that your final directory structure looks like this:
 >
 > ~~~
