@@ -1,7 +1,7 @@
 sc-shell
 ==========
 
-An introduction to the Unix shell for people who have never used the command line before.
+An introduction to the Unix shell.
 
 The rendered content can be viewed here:
 
