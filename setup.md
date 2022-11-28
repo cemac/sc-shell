@@ -8,19 +8,12 @@ root: .
 
 If you have an Apple or Linux operating system, the required software should already be installed on your system.
 
-If you are using a Windows operating system, the [MobaXterm][mobaxterm] software can be used.
+If you are using a Windows operating system, the [Git Bash][git_bash] software can be used.
 
-If you have administrative access to your computer, you can download and the *Installer edition* and run through the installation process to install the software on your computer.
+If you have administrative access to your computer, you can download the *Standalone Installer* and run through the installation process to install the software on your computer.
+All of the defaults are fine, but is recommended to change the *Configuring the terminal emulator to use with Git Bash* option to **_Use Windows' default console_**.
 
-If you do not have administrative access to your computer, you can download the *Portable edition*, which is a zip file, containing an executable which can be 	extracted and run.
-
-Once MobaXterm has been launched, a *Persistent home directory* should be set. To do this, go to _Settings_ > _Configuration_.
-In the configuration window, under the _General_ tab, the *Persistent home directory* should be set to *_ProfileDir_*.
-This can be done by clicking the folder icon and selecting your Windows user directory, which will usually be *c:\users\username* (replacing *username* with your username on the system).
-
-You may need to restart the MobaXterm software once this has been done, in order for the change to take effect.
-
-![Setting MobaXterm home directory](../fig/moba-home.png)
+If you do not have administrative access to your computer, you can download the *Portable edition*. This is an executable, which when run will extract all the files required to run the software, and includes the required executables. For the purposes of this session, it is recommended to extract the files to the Desktop directory, which should result in a new directory named *PortableGit* on the desktop.
 
 ## Download files
 You need to download some files to follow this lesson.
@@ -69,15 +62,11 @@ data-toggle="tab">Linux</a></li>
 <article role="tabpanel" class="tab-pane active" id="windows">
 Computers with Windows operating systems do not automatically have a Unix Shell program
 installed.
-In this lesson, we encourage you to use an emulator included in [Mobaxterm][mobaxterm],
+In this lesson, we encourage you to use an emulator included in [Git Bash][git_bash],
 which gives you access to both Bash shell commands and Git.
 
-Once installed, launch the MobaXterm program from the Windows start menu (if using the *Installer edition*)
-or by running the MobaXterm executable extracted from the downloaded zip file (if using the *Portable edition*).
-
-Once opened, select the _Start local terminal_ option from the right hand / main pane.
-
-![Launchch Mobaxterm terminal](../fig/moba-launch.png)
+Once installed, launch the *Git Bash* program from the Windows start menu (if using the *Standalone Installer*)
+or by running the **_git-bash.exe_** executable in the *PortableGit* directory (if using the *Portable* version).
 
 **For advanced users:**
 
@@ -119,7 +108,7 @@ you can run it by opening a terminal and typing `bash`.
 </div>
 </div>
 
-[mobaxterm]: https://mobaxterm.mobatek.net/download-home-edition.html
+[git_bash]: https://git-scm.com/download/win
 [zip-file]: {{ page.root }}/data/shell-lesson-data.zip
 [wsl]: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [mac-terminal]: http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/
