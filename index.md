@@ -18,7 +18,7 @@ you to this powerful tool.
 > 1. Please make sure you have [installed any required software][install_software]
 >
 > 2. Please download and extract the [shell-lesson-data.zip][data_zip] to your Desktop.
->    See the [setup][download-files] notes for details.
+>    See the [setup][download_files] notes for details.
 >
 > This lesson guides you through the basics of file systems and the
 > shell. If you have stored files on a computer at all and recognize
