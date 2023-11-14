@@ -50,9 +50,13 @@ We’ll use a loop to solve this problem, but first let’s look at the general 
 using the pseudo-code below:
 
 ```
+# The word "for" indicates the start of a "For-loop" command
 for thing in list_of_things
+# The word "do" indicates the start of job execution list
 do
-    operation_using $thing    # Indentation within the loop is not required, but aids legibility
+    # Indentation within the loop is not required, but aids legibility
+    operation_using/command $thing
+# The word "done" indicates the end of a loop
 done
 ```
 {: .language-bash}
@@ -62,6 +66,7 @@ and we can apply this to our example like this:
 ```
 $ for filename in basilisk.dat minotaur.dat unicorn.dat
 > do
+>     echo $filename
 >     head -n 2 $filename | tail -n 1
 > done
 ```
