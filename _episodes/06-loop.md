@@ -73,8 +73,11 @@ $ for filename in basilisk.dat minotaur.dat unicorn.dat
 {: .language-bash}
 
 ```
+basilisk.dat
 CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
 CLASSIFICATION: bos hominus
+unicorn.dat
 CLASSIFICATION: equus monoceros
 ```
 {: .output}
